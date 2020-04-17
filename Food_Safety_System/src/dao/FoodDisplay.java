@@ -67,28 +67,47 @@ public class FoodDisplay implements FoodDisplayInterface  {
 				System.out.println(e);
 			}
 	  }
-	
 //Search by food name 
 	public void searchbyFoodname(String food_name) {
 		try {
+			LocalDate now = LocalDate.now();
 			int flag = 0;
 			Connection con = ConnectionManager.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT food_id, food_type, food_name, m_f_date, expiry_date FROM food");
+			
 			while(rs.next())
 			{
+			    java.sql.Date date = rs.getDate(5);
+			    java.time.LocalDate expiredate = date.toLocalDate();
+				
+			    Period diff = Period.between(now, expiredate);
+				
+			    int y=diff.getYears();
+			    int m=diff.getMonths();
+			    int d=diff.getDays();
+				
 				if(food_name.equals(rs.getString(3))) {
-					System.out.println(rs.getInt(1)+"\t\t"+rs.getString(3)+"\t\t"+rs.getDate(4)+"\t\t"+rs.getDate(5));
+					if(y<=0&&m<=0&&d<=0) {
+						System.out.print(rs.getInt(1)+"\t\t"+rs.getString(3)+"\t\t"+rs.getDate(4)+"\t\t"+rs.getDate(5));
+						System.out.println("  (Expired food)");
+					}
+					else
+						System.out.println(rs.getInt(1)+"\t\t"+rs.getString(3)+"\t\t"+rs.getDate(4)+"\t\t"+rs.getDate(5));
 					flag = 1;
 				}
 			}
+			
+			
 			if(flag==0)
 				System.out.println("Stock is not available");
+			
 			con.close();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 	  }
+
 
 //Display Day wise Life Span Foods
 	public void viewbyLifespan(int id) {
