@@ -8,4 +8,4 @@ our food items in the pantry.
 ![ERDiagram](doc/erdiagram.jpeg)
 
 ## Screenshot of Food Safety System
-![FSS](doc/foodsafetysystem.jpeg)
+![FSS](doc/foodsafetysystem.png)
