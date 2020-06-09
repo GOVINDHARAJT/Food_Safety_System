@@ -5,4 +5,4 @@ Which is fully based on Java and MySQL and console based project. This food safe
 our food items in the pantry.
 
 ## ER Diagram for Food Safety System
-![ERDiagram](doc/Food Safety System.jpeg)
+![ERDiagram](doc/erdiagram.jpg)
