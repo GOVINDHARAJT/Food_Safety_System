@@ -6,3 +6,6 @@ our food items in the pantry.
 
 ## ER Diagram for Food Safety System
 ![ERDiagram](doc/erdiagram.jpeg)
+
+## Screenshot of Food Safety System
+![FSS](doc/foodsafetysystem.jpeg)
